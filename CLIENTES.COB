@@ -14,13 +14,20 @@
       * S: Indica Sinal Algébrico
       * Z: Indica Edição de Campos Numéricos
       * Exemplo: 01 WRK-NOME PIC X(20).
-       01 WRK-NOME          PICTURE X(30) VALUE "HERNANDE".
-       01 WRK-SOBRENOME     PICTURE X(30) VALUE "MONTEIRO".
-       01 WRK-SALDO         PICTURE 9(09) VALUE 160000000.
+       01 WRK-NOME          PICTURE X(30) VALUE SPACES.
+       01 WRK-SOBRENOME     PICTURE X(30) VALUE "Monteiro".
+       01 WRK-SALDO         PICTURE s9(09) VALUE ZEROS.
+
+       01 WRK-DEBITO        PICTURE s9(09) VALUE -20000000.
        PROCEDURE        DIVISION.
+           MOVE "Hernande" TO WRK-NOME.
+           MOVE 160000000 TO WRK-SALDO.
       *     DISPLAY WRK-NOME WRK-SALDO.
            DISPLAY "Nome: " WRK-NOME.
            DISPLAY "Sobrenome: " WRK-SOBRENOME.
            DISPLAY "SALDO: " WRK-SALDO.
+           DISPLAY "DEBITO: " WRK-DEBITO.
+           SUBTRACT WRK-DEBITO FROM WRK-SALDO.
+           DISPLAY "SALDO LIQUIDO: " WRK-SALDO.
       *     DISPLAY WRK-NOME WRK-SOBRENOME.
            STOP RUN.
